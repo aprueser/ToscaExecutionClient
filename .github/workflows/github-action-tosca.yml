@@ -10,3 +10,12 @@ jobs:
       - name: Check if the TestEvents.json file exists in the repo
         shell: pwsh
         run: Test-Path TestEvents.json | Should -Be $true
+      - name: Run Tosca Tests on Andrew's VM
+        shell: pwsh
+        run: |  
+          .\tosca_execution_client.ps1 -toscaServerUrl "http://https://f157-172-56-81-93.ngrok.io" -projectName "Demo_Workspace" -eventsConfigFilePath "TestEvents.json" -clientId "vq6fsmonF0GT2RnLIsM66Q" -clientSecret "OR9W_uxoEkiyMUHfk5v65AoUn1FMHTHUegEOlVykhExg" -creator "ToscaExecutionClient" -debug "true" -executionEnvironment "Dex" -pollingInterval 10
+      - name: Process JUnit Results
+        uses: mikepenz/action-junit-report@v3
+        if: always()
+        with:
+          report_paths: '**/results/*results.xml
