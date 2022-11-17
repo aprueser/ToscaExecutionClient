@@ -18,4 +18,4 @@ jobs:
         uses: mikepenz/action-junit-report@v3
         if: always()
         with:
-          report_paths: '**/results/*results.xml
+          report_paths: '**/results/*results.xml'
