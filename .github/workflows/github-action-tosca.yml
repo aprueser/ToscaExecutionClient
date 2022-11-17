@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} is Running Tosca Tests via the AOS API 🚀
 on: [push]
 jobs:
   Execute-Tosca-Tests:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
@@ -21,5 +21,5 @@ jobs:
         uses: mikepenz/action-junit-report@v3
         if: always()
         with:
-          report_paths: '**/results*results.xml'
+          report_paths: '**/results/*results.xml'
           require_tests: true
