@@ -12,8 +12,11 @@ jobs:
         run: Test-Path TestEvents.json | Should -Be $true
       - name: Run Tosca Tests on Andrew's VM
         shell: pwsh
+        env: # Set the secret as an input
+          client_id: ${{ secrets.TOSCAVM_CLIENTID }}
+          client_secret: ${{ secrets.TOSCAVM_CLIENTSECRET }}
         run: |  
-          .\tosca_execution_client.ps1 -toscaServerUrl "https://f157-172-56-81-93.ngrok.io" -projectName "Demo_Workspace" -eventsConfigFilePath "TestEvents.json" -clientId "vq6fsmonF0GT2RnLIsM66Q" -clientSecret "OR9W_uxoEkiyMUHfk5v65AoUn1FMHTHUegEOlVykhExg" -creator "Github-ToscaExecutionClient" -debug "true" -executionEnvironment "Dex" -pollingInterval 10
+          .\tosca_execution_client.ps1 -toscaServerUrl "https://f157-172-56-81-93.ngrok.io" -projectName "Demo_Workspace" -eventsConfigFilePath "TestEvents.json" -clientId "$env:client_id" -clientSecret "$env:client_secret" -creator "Github-ToscaExecutionClient" -debug "true" -executionEnvironment "Dex" -pollingInterval 10
       - name: Process JUnit Results
         uses: mikepenz/action-junit-report@v3
         if: always()
