@@ -16,7 +16,7 @@ jobs:
           client_id: ${{ secrets.TOSCAVM_CLIENTID }}
           client_secret: ${{ secrets.TOSCAVM_CLIENTSECRET }}
         run: |  
-          .\tosca_execution_client.ps1 -toscaServerUrl "https://305a-172-56-81-93.ngrok.io" -projectName "Demo_Workspace" -eventsConfigFilePath "TestEvents.json" -clientId "$env:client_id" -clientSecret "$env:client_secret" -creator "Github-ToscaExecutionClient" -debug "true" -executionEnvironment "Dex" -pollingInterval 10
+          .\tosca_execution_client.ps1 -toscaServerUrl "https://5ae6-172-56-81-129.ngrok-free.app" -projectName "Demo_Workspace" -eventsConfigFilePath "TestEvents.json" -clientId "$env:client_id" -clientSecret "$env:client_secret" -creator "Github-ToscaExecutionClient" -debug "true" -executionEnvironment "Dex" -pollingInterval 10
       - name: Process JUnit Results
         uses: mikepenz/action-junit-report@v3
         if: always()
